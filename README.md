@@ -6,7 +6,7 @@ It is completely expandable. Depending on your needs you might or might not need
 to add more components (a multiplexer for instance).
 
 
-## Basic Components
+###  Basic Components
 * Arduino UNO (with Atmega328P-PU as ISP)
 * Atmega328P-PU
 * 10kΩ resistor (1)
