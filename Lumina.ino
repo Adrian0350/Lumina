@@ -276,12 +276,14 @@ void systemCheck()
 		return;
 	}
 
+	digitalWrite(LED_BUILTIN, LOW);
 	switchRelay0("ON");
 	switchRelay1("ON");
 	switchRelay2("ON");
 
 	delay(3000);
 
+	digitalWrite(LED_BUILTIN, HIGH);
 	switchRelay0("OFF");
 	switchRelay1("OFF");
 	switchRelay2("OFF");
@@ -296,11 +298,12 @@ void systemCheck()
  */
 void setup()
 {
-	digitalWrite(LED_BUILTIN, HIGH);
-
+	pinMode(LED_BUILTIN, OUTPUT);
 	pinMode(RELAY_0, OUTPUT);
 	pinMode(RELAY_1, OUTPUT);
 	pinMode(RELAY_2, OUTPUT);
+
+	digitalWrite(LED_BUILTIN, HIGH);
 
 	Serial.begin(9600);
 }
@@ -312,6 +315,7 @@ void setup()
  */
 void loop()
 {
+	systemCheck();
 	readLDR();
 	setTriggerBoundaries();
 
