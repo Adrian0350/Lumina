@@ -303,8 +303,6 @@ void setup()
 	pinMode(RELAY_1, OUTPUT);
 	pinMode(RELAY_2, OUTPUT);
 
-	digitalWrite(LED_BUILTIN, HIGH);
-
 	Serial.begin(9600);
 }
 
@@ -319,62 +317,67 @@ void loop()
 	readLDR();
 	setTriggerBoundaries();
 
-	// Turns on or off first light.
-	if (LightIntensity > offLimit(LIGHT_POINT_0) && RELAY_0_STATUS == "ON")
-	{
-		switchRelay0("OFF");
-
-	}
-	else if (LightIntensity < onLimit(LIGHT_POINT_0) && RELAY_0_STATUS == "OFF")
+	if (LIGHT_POINT_0 < 1 + LIGHT_LIMIT_MARGIN)
 	{
 		switchRelay0("ON");
 	}
-
-	// Turns on or off second light.
-	if (LightIntensity > offLimit(LIGHT_POINT_1) && RELAY_1_STATUS == "ON")
-	{
-		switchRelay1("OFF");
-	}
-	else if (LightIntensity < onLimit(LIGHT_POINT_1) && RELAY_1_STATUS == "OFF")
-	{
-		switchRelay1("ON");
-	}
-
-	// Turns on or off third light.
-	if (LightIntensity > offLimit(LIGHT_POINT_2) && RELAY_2_STATUS == "ON")
-	{
-		switchRelay2("OFF");
-	}
-	else if (LightIntensity < onLimit(LIGHT_POINT_2) && RELAY_2_STATUS == "OFF")
-	{
-		switchRelay2("ON");
-	}
-
-	if (LIGHT_POINT_0 < 50)
-	{
-		switchRelay0("ON");
-	}
-	else if (LIGHT_POINT_0 > 980)
+	else if (LIGHT_POINT_0 > 1022 - LIGHT_LIMIT_MARGIN)
 	{
 		switchRelay0("OFF");
 	}
+	else
+	{
+		// Turns on or off first light.
+		if (LightIntensity > offLimit(LIGHT_POINT_0) && RELAY_0_STATUS == "ON")
+		{
+			switchRelay0("OFF");
+		}
+		else if (LightIntensity < onLimit(LIGHT_POINT_0) && RELAY_0_STATUS == "OFF")
+		{
+			switchRelay0("ON");
+		}
+	}
 
-	if (LIGHT_POINT_1 < 50)
+	if (LIGHT_POINT_1 < 1 + LIGHT_LIMIT_MARGIN)
 	{
 		switchRelay1("ON");
 	}
-	else if (LIGHT_POINT_1 > 980)
+	else if (LIGHT_POINT_1 > 1022 - LIGHT_LIMIT_MARGIN)
 	{
 		switchRelay1("OFF");
 	}
+	else
+	{
+		// Turns on or off second light.
+		if (LightIntensity > offLimit(LIGHT_POINT_1) && RELAY_1_STATUS == "ON")
+		{
+			switchRelay1("OFF");
+		}
+		else if (LightIntensity < onLimit(LIGHT_POINT_1) && RELAY_1_STATUS == "OFF")
+		{
+			switchRelay1("ON");
+		}
+	}
 
-	if (LIGHT_POINT_2 < 50)
+	if (LIGHT_POINT_2 < 1 + LIGHT_LIMIT_MARGIN)
 	{
 		switchRelay2("ON");
 	}
-	else if (LIGHT_POINT_2 > 980)
+	else if (LIGHT_POINT_2 > 1022 - LIGHT_LIMIT_MARGIN)
 	{
 		switchRelay2("OFF");
+	}
+	else
+	{
+		// Turns on or off third light.
+		if (LightIntensity > offLimit(LIGHT_POINT_2) && RELAY_2_STATUS == "ON")
+		{
+			switchRelay2("OFF");
+		}
+		else if (LightIntensity < onLimit(LIGHT_POINT_2) && RELAY_2_STATUS == "OFF")
+		{
+			switchRelay2("ON");
+		}
 	}
 
 	delay(readFrequency);
