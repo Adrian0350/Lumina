@@ -68,21 +68,21 @@ const int RELAY_2 = 11;
  *
  * @var string
  */
-String RELAY_0_STATUS = false;
+boolean RELAY_0_STATUS = false;
 
 /**
  * Relay status.
  *
  * @var string
  */
-String RELAY_1_STATUS = false;
+boolean RELAY_1_STATUS = false;
 
 /**
  * Relay status.
  *
  * @var string
  */
-String RELAY_2_STATUS = false;
+boolean RELAY_2_STATUS = false;
 
 /**
  * The main reference to calculate between
@@ -180,7 +180,7 @@ void setTriggerBoundaries()
  * @param  string status ON or OFF
  * @return void
  */
-void switchRelay0(String status)
+void switchRelay0(boolean status)
 {
 	if (status)
 	{
@@ -201,7 +201,7 @@ void switchRelay0(String status)
  * @param  string status ON or OFF
  * @return void
  */
-void switchRelay1(String status)
+void switchRelay1(boolean status)
 {
 	if (status)
 	{
@@ -222,7 +222,7 @@ void switchRelay1(String status)
  * @param  string status ON or OFF
  * @return void
  */
-void switchRelay2(String status)
+void switchRelay2(boolean status)
 {
 	if (status)
 	{
