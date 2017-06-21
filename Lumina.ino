@@ -118,7 +118,7 @@ int LIGHT_POINT_2 = 150;
  *
  * @var int
  */
-int LIGHT_LIMIT_MARGIN = 50;
+int LIGHT_LIMIT_MARGIN = 30;
 
 /**
  * The frequency the system will work at.
@@ -319,11 +319,11 @@ void loop()
 
 	if (LIGHT_POINT_0 < 1 + LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay0(true);
+		switchRelay0(false);
 	}
 	else if (LIGHT_POINT_0 > 1022 - LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay0(false);
+		switchRelay0(true);
 	}
 	else
 	{
@@ -340,11 +340,11 @@ void loop()
 
 	if (LIGHT_POINT_1 < 1 + LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay1(true);
+		switchRelay1(false);
 	}
 	else if (LIGHT_POINT_1 > 1022 - LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay1(false);
+		switchRelay1(true);
 	}
 	else
 	{
@@ -361,11 +361,11 @@ void loop()
 
 	if (LIGHT_POINT_2 < 1 + LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay2(true);
+		switchRelay2(false);
 	}
 	else if (LIGHT_POINT_2 > 1022 - LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay2(false);
+		switchRelay2(true);
 	}
 	else
 	{
