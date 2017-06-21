@@ -68,21 +68,21 @@ const int RELAY_2 = 11;
  *
  * @var string
  */
-String RELAY_0_STATUS = "OFF";
+String RELAY_0_STATUS = false;
 
 /**
  * Relay status.
  *
  * @var string
  */
-String RELAY_1_STATUS = "OFF";
+String RELAY_1_STATUS = false;
 
 /**
  * Relay status.
  *
  * @var string
  */
-String RELAY_2_STATUS = "OFF";
+String RELAY_2_STATUS = false;
 
 /**
  * The main reference to calculate between
@@ -182,11 +182,11 @@ void setTriggerBoundaries()
  */
 void switchRelay0(String status)
 {
-	if (status == "ON")
+	if (status)
 	{
 		digitalWrite(RELAY_0, HIGH);
 	}
-	if (status == "OFF")
+	else if (!status)
 	{
 		digitalWrite(RELAY_0, LOW);
 	}
@@ -203,11 +203,11 @@ void switchRelay0(String status)
  */
 void switchRelay1(String status)
 {
-	if (status == "ON")
+	if (status)
 	{
 		digitalWrite(RELAY_1, HIGH);
 	}
-	if (status == "OFF")
+	else if (!status)
 	{
 		digitalWrite(RELAY_1, LOW);
 	}
@@ -224,11 +224,11 @@ void switchRelay1(String status)
  */
 void switchRelay2(String status)
 {
-	if (status == "ON")
+	if (status)
 	{
 		digitalWrite(RELAY_2, HIGH);
 	}
-	if (status == "OFF")
+	else if (!status)
 	{
 		digitalWrite(RELAY_2, LOW);
 	}
@@ -277,16 +277,16 @@ void systemCheck()
 	}
 
 	digitalWrite(LED_BUILTIN, LOW);
-	switchRelay0("ON");
-	switchRelay1("ON");
-	switchRelay2("ON");
+	switchRelay0(true);
+	switchRelay1(true);
+	switchRelay2(true);
 
 	delay(3000);
 
 	digitalWrite(LED_BUILTIN, HIGH);
-	switchRelay0("OFF");
-	switchRelay1("OFF");
-	switchRelay2("OFF");
+	switchRelay0(false);
+	switchRelay1(false);
+	switchRelay2(false);
 
 	SYSTEM_VERIFIED = true;
 }
@@ -319,64 +319,64 @@ void loop()
 
 	if (LIGHT_POINT_0 < 1 + LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay0("ON");
+		switchRelay0(true);
 	}
 	else if (LIGHT_POINT_0 > 1022 - LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay0("OFF");
+		switchRelay0(false);
 	}
 	else
 	{
 		// Turns on or off first light.
-		if (LightIntensity > offLimit(LIGHT_POINT_0) && RELAY_0_STATUS == "ON")
+		if (LightIntensity > offLimit(LIGHT_POINT_0) && RELAY_0_STATUS)
 		{
-			switchRelay0("OFF");
+			switchRelay0(false);
 		}
-		else if (LightIntensity < onLimit(LIGHT_POINT_0) && RELAY_0_STATUS == "OFF")
+		else if (LightIntensity < onLimit(LIGHT_POINT_0) && !RELAY_0_STATUS)
 		{
-			switchRelay0("ON");
+			switchRelay0(true);
 		}
 	}
 
 	if (LIGHT_POINT_1 < 1 + LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay1("ON");
+		switchRelay1(true);
 	}
 	else if (LIGHT_POINT_1 > 1022 - LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay1("OFF");
+		switchRelay1(false);
 	}
 	else
 	{
 		// Turns on or off second light.
-		if (LightIntensity > offLimit(LIGHT_POINT_1) && RELAY_1_STATUS == "ON")
+		if (LightIntensity > offLimit(LIGHT_POINT_1) && RELAY_1_STATUS)
 		{
-			switchRelay1("OFF");
+			switchRelay1(false);
 		}
-		else if (LightIntensity < onLimit(LIGHT_POINT_1) && RELAY_1_STATUS == "OFF")
+		else if (LightIntensity < onLimit(LIGHT_POINT_1) && !RELAY_1_STATUS)
 		{
-			switchRelay1("ON");
+			switchRelay1(true);
 		}
 	}
 
 	if (LIGHT_POINT_2 < 1 + LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay2("ON");
+		switchRelay2(true);
 	}
 	else if (LIGHT_POINT_2 > 1022 - LIGHT_LIMIT_MARGIN)
 	{
-		switchRelay2("OFF");
+		switchRelay2(false);
 	}
 	else
 	{
 		// Turns on or off third light.
-		if (LightIntensity > offLimit(LIGHT_POINT_2) && RELAY_2_STATUS == "ON")
+		if (LightIntensity > offLimit(LIGHT_POINT_2) && RELAY_2_STATUS)
 		{
-			switchRelay2("OFF");
+			switchRelay2(false);
 		}
-		else if (LightIntensity < onLimit(LIGHT_POINT_2) && RELAY_2_STATUS == "OFF")
+		else if (LightIntensity < onLimit(LIGHT_POINT_2) && !RELAY_2_STATUS)
 		{
-			switchRelay2("ON");
+			switchRelay2(true);
 		}
 	}
 
