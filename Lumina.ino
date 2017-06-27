@@ -317,11 +317,11 @@ void loop()
 	readLDR();
 	setTriggerBoundaries();
 
-	if (LIGHT_POINT_0 < 1 + LIGHT_LIMIT_MARGIN)
+	if (LIGHT_POINT_0 < 10)
 	{
 		switchRelay0(false);
 	}
-	else if (LIGHT_POINT_0 > 1022 - LIGHT_LIMIT_MARGIN)
+	else if (LIGHT_POINT_0 > 1013)
 	{
 		switchRelay0(true);
 	}
@@ -338,11 +338,11 @@ void loop()
 		}
 	}
 
-	if (LIGHT_POINT_1 < 1 + LIGHT_LIMIT_MARGIN)
+	if (LIGHT_POINT_1 < 10)
 	{
 		switchRelay1(false);
 	}
-	else if (LIGHT_POINT_1 > 1022 - LIGHT_LIMIT_MARGIN)
+	else if (LIGHT_POINT_1 > 1013)
 	{
 		switchRelay1(true);
 	}
@@ -359,11 +359,11 @@ void loop()
 		}
 	}
 
-	if (LIGHT_POINT_2 < 1 + LIGHT_LIMIT_MARGIN)
+	if (LIGHT_POINT_2 < 10)
 	{
 		switchRelay2(false);
 	}
-	else if (LIGHT_POINT_2 > 1022 - LIGHT_LIMIT_MARGIN)
+	else if (LIGHT_POINT_2 > 1013)
 	{
 		switchRelay2(true);
 	}
