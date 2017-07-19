@@ -1,9 +1,12 @@
 # Lumina
-Is a base system for automatic relay triggering.
+Is a base system for automatic relay triggering using declarative programming.
 
 In this instance I used the code to trigger a group of lamps with adjustable daylight intensity triggering.
+Although the function of luminosity is not in Lumens it's still pretty accurate.
+Will upgrade functionality with the use of real Lumen scale.
+
 It is completely expandable. Depending on your needs you might or might not need
-to add more components (a multiplexer for instance).
+to add more components or code (a multiplexer for instance).
 
 
 ###  Basic Components
